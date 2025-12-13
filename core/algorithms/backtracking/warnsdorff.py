@@ -112,3 +112,57 @@ class WarnsdorffBacktracking:
     def stop(self):
         """Stop the search."""
         self.running = False
+# =======================
+# Main runner
+# =======================
+if __name__ == "__main__":
+    print("=== Knight's Tour | Warnsdorff Greedy (Classic) ===")
+
+    # ---- Board size ----
+    while True:
+        try:
+            size = int(input("Enter board size (5 - 10): "))
+            if 5 <= size <= 10:
+                break
+            print("⚠️ Size must be between 5 and 10")
+        except ValueError:
+            print("❌ Please enter a valid number")
+
+    # ---- Start position ----
+    while True:
+        try:
+            row = int(input(f"Enter start row (0 - {size - 1}): "))
+            col = int(input(f"Enter start col (0 - {size - 1}): "))
+            if 0 <= row < size and 0 <= col < size:
+                break
+            print("⚠️ Invalid position")
+        except ValueError:
+            print("❌ Please enter valid numbers")
+
+    start_square = row * size + col
+
+    # ---- Create board and solver ----
+    board = Board(size=size)
+    solver = WarnsdorffBacktracking(board)
+
+    print("\n⏳ Solving... (Greedy, no backtracking)")
+
+    solution = solver.solve(start_square)
+
+    # ---- Output ----
+    if solution:
+        print("\n✅ Solution found!")
+        print("Path (indices):")
+        print(solution)
+
+        print("\nBoard order:")
+        board_view = [[-1 for _ in range(size)] for _ in range(size)]
+        for step, idx in enumerate(solution):
+            r = idx // size
+            c = idx % size
+            board_view[r][c] = step
+
+        for r in board_view:
+            print(" ".join(f"{v:2}" for v in r))
+    else:
+        print("\n❌ No solution found (stuck position)")
