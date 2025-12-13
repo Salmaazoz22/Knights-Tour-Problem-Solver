@@ -88,7 +88,7 @@ if CA_AVAILABLE:
 # ----------------------------
 # PARAMETERS
 # ----------------------------
-BOARD_SIZES = [5, 6, 7, 8]  # Start with smaller sizes
+BOARD_SIZES = [5, 6, 7, 8,9,10]  
 START_POSITIONS = [(0,0), (0,-1), (-1,0), (-1,-1), (2,2)]
 RUNS_PER_SETTING = 3  # Reduced for faster testing
 
