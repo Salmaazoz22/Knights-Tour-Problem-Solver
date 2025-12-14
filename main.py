@@ -10,7 +10,7 @@ the Knight's Tour problem using either Cultural Algorithm or Backtracking.
 Usage:
     python main.py
 
-Author: [Your Name]
+Author: [Salma]
 Date: 2025
 """
 

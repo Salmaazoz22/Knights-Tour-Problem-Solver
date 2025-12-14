@@ -109,9 +109,15 @@ class CulturalThread(threading.Thread):
         
         start_time = time_module.time()
         
+        # Track the generation number
+        self.generations = 0
+        
         def update_callback(gen, best_individual, target):
             if not self.running:
                 return
+            
+            # Update generation counter
+            self.generations = gen
             
             if gen % GUI_UPDATE_INTERVAL == 0:
                 self.board_widget.update_path(best_individual.chromosome)
@@ -128,11 +134,9 @@ class CulturalThread(threading.Thread):
         result = self.ca.run()
         
         self.time_seconds = time_module.time() - start_time
-        self.generations = 0
         
         if result:
             self.board_widget.update_path(result.chromosome)
-            # FIXED: Use .fitness instead of .get_fitness()
             is_complete = result.fitness == self.board_size * self.board_size - 1
             print(f"✅ Cultural Algorithm complete: {is_complete}, Fitness: {result.fitness}, Time: {self.time_seconds:.2f}s, Generations: {self.generations}")
             if self.callback:
@@ -146,7 +150,6 @@ class CulturalThread(threading.Thread):
         self.running = False
         if self.ca:
             self.ca.stop()
-
 
 class BacktrackingThread(threading.Thread):
     """Thread for Backtracking algorithm."""
