@@ -9,7 +9,7 @@ A comprehensive solution to the **Knight's Tour Problem** using **Cultural Algor
 - **Rowayda Mohammed Khairy**
 - **Salma Ashraf**
 - **Zeiad Saher Salama**
-- **Mohamed Saied Ahmed**
+- **Mohammed Saied Ahmed**
 
 ---
 
